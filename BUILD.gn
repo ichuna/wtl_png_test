@@ -1,0 +1,43 @@
+# Copyright 2014 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+import("//build/buildflag_header.gni")
+import("//build/config/compiler/compiler.gni")
+
+declare_args() {
+  enable_png_logging = false
+}
+
+executable("test_png") {
+  sources = [
+    "AboutDlg.h",
+    "AboutDlg.cpp",
+    "MainDlg.h",
+    "MainDlg.cpp",
+    "resource.h",
+    "stdafx.cpp",
+    "stdafx.h",
+    "wtl_png_test.cpp",
+    "wtl_png_test.h",
+    "file_enumerator.cc",
+    "file_enumerator_win.cc",
+    "file_enumerator.h",
+    "png_decoder.cpp",
+    "png_decoder.h",
+    "wtl_png_test.rc",
+    "logging.h",
+    "logging.c",
+  ]
+  
+  defines = []
+  if (enable_png_logging) {
+    defines += ["ENABLE_PNGLOG"]
+  }
+  
+  deps = [
+    "//third_party/libpng",
+  ]
+
+  configs -= [ "//build/config/win:console" ]
+  configs += [ "//build/config/win:windowed" ]
+}
