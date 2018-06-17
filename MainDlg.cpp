@@ -222,7 +222,7 @@ LRESULT CMainDlg::OnBnClickedButtonFile(WORD /*wNotifyCode*/, WORD /*wID*/, HWND
   }
 
   if (!strFile.IsEmpty()) {
-    //c_file_.SetWindowTextW(strFile);
+    c_file_.SetWindowTextW(strFile);
   }
   return 0;
 }
